@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const generateID = require('../utils/generateID');
 const conn = require('../database/conn');
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
   async create(req, res) {
     const { name, email, whatsapp, city, uf } = req.body;
   
-    const id = crypto.randomBytes(4).toString('HEX');
+    const id = generateID();
   
     await conn('ongs').insert({
       id, name, email, whatsapp, city, uf
